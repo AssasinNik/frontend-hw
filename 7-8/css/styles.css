@@ -1,0 +1,177 @@
+/* Общие стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #080F17;
+    color: #D6DDE6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* Header с логотипом и названием */
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.logo {
+    width: 60px;
+}
+
+.title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.5rem;
+    color: #C1F17E;
+}
+
+/* Форма для добавления сотрудника */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-container label,
+.form-container input {
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+.form-container label {
+    font-size: 1rem;
+    text-align: left;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"] {
+    background-color: #1C1F24;
+    border: 1px solid #D6DDE6;
+    padding: 15px;
+    border-radius: 5px;
+    color: #D6DDE6;
+    font-size: 1rem;
+}
+
+button#add-btn {
+    background-color: #C1F17E;
+    color: #080F17;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+
+button#add-btn:hover {
+    background-color: #A8E268;
+}
+
+/* Карточки сотрудников */
+.employee-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.employee-card {
+    background-color: #1C1F24;
+    padding: 25px;
+    border-radius: 15px;
+    width: calc(33.333% - 20px);
+    position: relative;
+    color: #C1F17E;
+    border: 2px solid #C1F17E;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: cardAnimation 0.5s ease-in-out;
+}
+
+.employee-card:hover {
+    transform: scale(1.05);
+}
+
+.employee-card h3 {
+    font-size: 1.2em;
+    color: #D6DDE6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.employee-card .salary,
+.employee-card .efficiency {
+    font-size: 1em;
+    margin: 10px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Иконка удаления */
+.delete-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.delete-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.delete-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Информация об эффективности */
+.efficiency-info {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #D6DDE6;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Анимации */
+@keyframes cardAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .employee-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .employee-card {
+        width: 100%;
+    }
+}
