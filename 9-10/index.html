@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Group</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Студенческие группы</h1>
+</header>
+
+<main>
+
+    <section class="add-student">
+        <h2>Добавить нового студента</h2>
+        <form id="add-student-form">
+            <input type="text" id="fullName" placeholder="Ф.И.О" required>
+            <input type="date" id="birthDate" placeholder="Дата рождения" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="number" id="enrollmentYear" placeholder="Дата поступления" required>
+            <input type="number" id="course" placeholder="Курс" required>
+            <input type="text" id="groupNumber" placeholder="Номер группы" required>
+            <div id="grades-section">
+                <h3>Добавление сессий</h3>
+                <button type="button" onclick="addSession()">Добавить сессию</button>
+                <div id="session-container">
+                    <!-- Session inputs will be dynamically added here -->
+                </div>
+            </div>
+            <button type="submit">Добавить студента</button>
+        </form>
+    </section>
+
+    <section class="student-overview">
+        <h2>Все студенты</h2>
+        <ul id="student-list">
+            <!-- Список студентов будет добавлен через JavaScript -->
+        </ul>
+    </section>
+
+    <section class="student-list">
+        <h2>Студенты-отличники</h2>
+        <div id="students-container" class="students">
+            <!-- Карточки студентов будут добавлены через JavaScript -->
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Студенческие группы</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
