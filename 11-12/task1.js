@@ -17,7 +17,7 @@ fs.readFile(inputFilePath, 'utf8', (err, data) => {
         return;
     }
 
-    const yearRegex = /(?<![\w-])\b(1[5-9]\d{2}|20[0-4]\d|2050)\b(?!\+)/g;
+    const yearRegex = /(?<![\w-])\b(1[6-9]\d{2}|20[0-4]\d|2050)\b(?=\s|[+.,!?)]|$)/g;
     const sourceLinkRegex = /\[\d+(-\d+)?\]/g;
     const moneyRegex = /\b\d{1,3}(?:\s\d{3})*(?:\.\d{2})?\s?(?:руб(?:\.|ля|лей|лями)?)/gi;
 
