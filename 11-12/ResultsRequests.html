@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Анализ Логов</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background-color: #1e1e2f;
+            color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #e63946;
+            margin: 20px 0;
+        }
+
+        section {
+            margin: 20px auto;
+            max-width: 90%;
+            background: #282a36;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #444;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .count {
+            font-size: 1.2rem;
+            color: #8be9fd;
+            margin-bottom: 20px;
+        }
+
+        /* Таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #44475a;
+            color: #50fa7b;
+            font-size: 1.1rem;
+        }
+
+        td {
+            background: #282a36;
+            border-bottom: 1px solid #444;
+        }
+
+        tr:nth-child(even) td {
+            background: #353646;
+        }
+
+        /* Hover эффекты */
+        tr:hover td {
+            background: #6272a4;
+            color: #f4f4f4;
+        }
+
+        /* Кнопки */
+        button {
+            display: inline-block;
+            background: #50fa7b;
+            color: #282a36;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #8be9fd;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Анализ Логов</h1>
+
+    <section>
+        <h2 class="section-title">404 Ответы</h2>
+        <div class="count">Всего: <strong>
+                2
+            </strong></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата и Время</th>
+                    <th>Метод</th>
+                    <th>URL</th>
+                    <th>Статус</th>
+                    <th>Размер</th>
+                    <th>Реферер</th>
+                    <th>User-Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:34 +0300
+                        </td>
+                        <td>
+                            GET
+                        </td>
+                        <td>
+                            /nonexistent.html HTTP/1.1
+                        </td>
+                        <td>
+                            404
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:52 +0300
+                        </td>
+                        <td>
+                            GET
+                        </td>
+                        <td>
+                            /nonexistent.html HTTP/1.1
+                        </td>
+                        <td>
+                            404
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+                        </td>
+                    </tr>
+                    
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2 class="section-title">User-Agent</h2>
+        <div class="count">Уникальных: <strong>
+                51
+            </strong></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Количество</th>
+                    <th>User-Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            3
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (iPad; CPU OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            curl/7.84.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/110.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            wget 1.21.3
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/109.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            curl/7.83.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            wget 1.20.3
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (iPad; CPU OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Mobile/15E148 Safari/604.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            curl/7.79.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Android 13; Mobile; rv:102.0) Gecko/102.0 Firefox/102.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            wget 1.19.4
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Linux; Android 12; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            curl/7.82.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            2
+                        </td>
+                        <td>
+                            wget 1.18.4
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            python-requests/2.31.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Mobile/15E148 Safari/604.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            okhttp/4.10.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            curl/7.78.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Node-Fetch/1.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            axios/1.4.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Go-http-client/1.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Wget/1.21.3
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Apache-HttpClient/4.5.13 (Java/17.0.7)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            curl/7.64.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            libcurl-agent/7.88.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            okhttp/3.14.9
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            python-requests/2.28.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.10) Gecko/2009042316 Firefox/3.0.10
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            axios/0.27.2
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Node-Fetch/2.6.7
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            21
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+                        </td>
+                    </tr>
+                    
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2 class="section-title">POST Запросы</h2>
+        <div class="count">Всего: <strong>
+                19
+            </strong></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Дата и Время</th>
+                    <th>Метод</th>
+                    <th>URL</th>
+                    <th>Статус</th>
+                    <th>Размер</th>
+                    <th>Реферер</th>
+                    <th>User-Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:28 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /submit HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            150
+                        </td>
+                        <td>
+                            http://example.com/form
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:26 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /api/data HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            567
+                        </td>
+                        <td>
+                            http://api.example.com
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:29 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /login HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            123
+                        </td>
+                        <td>
+                            http://example.com/login_page
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:32 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /comments HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            321
+                        </td>
+                        <td>
+                            http://example.com/blog/post
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/109.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:35 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /search HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            789
+                        </td>
+                        <td>
+                            http://example.com/search_results
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:38 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /upload HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            1000
+                        </td>
+                        <td>
+                            http://example.com/upload_page
+                        </td>
+                        <td>
+                            Mozilla/5.0 (iPad; CPU OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Mobile/15E148 Safari/604.1
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:41 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /register HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            256
+                        </td>
+                        <td>
+                            http://example.com/registration
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Android 13; Mobile; rv:102.0) Gecko/102.0 Firefox/102.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:44 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /profile HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            512
+                        </td>
+                        <td>
+                            http://example.com/profile_page
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Linux; Android 12; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:47 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /feedback HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            http://example.com/feedback_form
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:35 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /submit HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Linux; Android 13; SM-G991B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:38 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /data HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            1024
+                        </td>
+                        <td>
+                            http://example.org/form
+                        </td>
+                        <td>
+                            Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:41 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /login HTTP/1.1
+                        </td>
+                        <td>
+                            302
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:44 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /comment HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            curl/7.78.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:47 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /upload HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            axios/1.4.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:50 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /register HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:53 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /feedback HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            curl/7.64.0
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:56 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /order HTTP/1.1
+                        </td>
+                        <td>
+                            201
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            okhttp/3.14.9
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:45:59 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /search_ajax HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            512
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            axios/0.27.2
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            10/Oct/2023:13:46:02 +0300
+                        </td>
+                        <td>
+                            POST
+                        </td>
+                        <td>
+                            /form_data HTTP/1.1
+                        </td>
+                        <td>
+                            200
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            -
+                        </td>
+                        <td>
+                            curl/7.79.1
+                        </td>
+                    </tr>
+                    
+            </tbody>
+        </table>
+    </section>
+</body>
+
+</html>
