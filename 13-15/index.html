@@ -14,6 +14,7 @@
             margin: 0;
             background-color: #f7f7f7;
         }
+
         header {
             margin: 0;
             background-color: #e31b23;
@@ -79,9 +80,12 @@
         }
 
         @keyframes blink {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.5;
             }
+
             50% {
                 opacity: 1;
             }
@@ -102,6 +106,7 @@
         h3 {
             color: #e31b23;
         }
+
         .btn {
             display: inline-block;
             padding: 10px 15px;
@@ -113,6 +118,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .tabs {
             display: flex;
             justify-content: center;
@@ -135,7 +141,8 @@
             font-weight: bold;
         }
 
-        .tablinks:hover, .tablinks.active {
+        .tablinks:hover,
+        .tablinks.active {
             background: white;
             color: #e31b23;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -162,6 +169,7 @@
             display: block;
             margin-bottom: 5px;
         }
+
         .snowflake-container {
             position: fixed;
             top: 0;
@@ -186,6 +194,7 @@
                 transform: translateY(-10px);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(110vh);
                 opacity: 0.5;
@@ -238,6 +247,7 @@
             font-size: 14px;
             margin-top: 5px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -261,7 +271,8 @@
 <body>
     <header>
         <div class="garland">
-            <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none" width="100%">
+            <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"
+                width="100%">
                 <path d="M0,2 Q50,10 100,2" fill="none" stroke="black" stroke-width="0.5" />
             </svg>
             <div class="bulb" style="background-color: rgba(255, 150, 150, 0.8);"></div>
@@ -288,8 +299,8 @@
             <input type="password" id="login-password" placeholder="Введите пароль">
             <div class="error" id="error-login-password"></div>
         </div>
-        <button class="btn" onclick="login()">Войти</button>
-        <button class="btn" onclick="showRegistration()">Регистрация</button>
+        <button class="btn" onclick="app.login()">Войти</button>
+        <button class="btn" onclick="app.showRegistration()">Регистрация</button>
     </div>
 
     <div class="container hidden" id="registration-container">
@@ -299,7 +310,7 @@
             <input type="text" id="reg-name" placeholder="Введите ФИО">
             <div class="error" id="error-reg-name"></div>
         </div>
-        <div class="form-group" id ="reg-group-container">
+        <div class="form-group" id="reg-group-container">
             <label for="reg-group-number">Номер группы</label>
             <input type="text" id="reg-group-number" placeholder="Введите номер группы">
             <div class="error" id="error-reg-group-number"></div>
@@ -321,13 +332,13 @@
         </div>
         <div class="form-group">
             <label for="reg-role">Роль</label>
-            <select id="reg-role" onchange="toggleGroupCodeField()">
+            <select id="reg-role" onchange="app.toggleGroupCodeField()">
                 <option value="student">Студент</option>
                 <option value="teacher">Преподаватель</option>
             </select>
         </div>
-        <button class="btn" onclick="registerUser()">Зарегистрироваться</button>
-        <button class="btn" onclick="showLogin()">Назад</button>
+        <button class="btn" onclick="app.registerUser()">Зарегистрироваться</button>
+        <button class="btn" onclick="app.showLogin()">Назад</button>
     </div>
 
     <div class="container hidden" id="teacher-container">
@@ -336,15 +347,15 @@
         <div class="form-group">
             <label for="session-select">Выберите сессию</label>
             <div class="input-group">
-                <select id="session-select" onchange="loadSessionGrades()"></select>
-                <button class="btn btn-danger" onclick="resetSessionGrades()">Сбросить успеваемость</button>
+                <select id="session-select" onchange="app.loadSessionGrades()"></select>
+                <button class="btn btn-danger" onclick="app.resetSessionGrades()">Сбросить успеваемость</button>
             </div>
         </div>
 
         <div class="tabs">
-            <button class="tablinks" onclick="openTab(event, 'sessions-management')">Управление сессиями</button>
-            <button class="tablinks" onclick="openTab(event, 'add-grades')">Добавление оценок</button>
-            <button class="tablinks" onclick="openTab(event, 'grades-list')">Список оценок</button>
+            <button class="tablinks" onclick="app.openTab(event, 'sessions-management')">Управление сессиями</button>
+            <button class="tablinks" onclick="app.openTab(event, 'add-grades')">Добавление оценок</button>
+            <button class="tablinks" onclick="app.openTab(event, 'grades-list')">Список оценок</button>
         </div>
 
         <div id="sessions-management" class="tabcontent">
@@ -353,7 +364,7 @@
                 <label for="new-session-name">Создать новую сессию</label>
                 <div class="input-group">
                     <input type="text" id="new-session-name" placeholder="Название сессии">
-                    <button class="btn" onclick="createNewSession()">Добавить</button>
+                    <button class="btn" onclick="app.createNewSession()">Добавить</button>
                 </div>
             </div>
         </div>
@@ -377,7 +388,7 @@
                     <option value="5">5</option>
                 </select>
             </div>
-            <button class="btn" onclick="addGradeToSession()">
+            <button class="btn" onclick="app.addGradeToSession()">
                 <i class="fas fa-plus-circle"></i> Добавить оценку
             </button>
         </div>
@@ -386,12 +397,12 @@
             <h3>Список Оценок</h3>
             <table class="table" id="grades-table">
                 <thead>
-                <tr>
-                    <th>Студент</th>
-                    <th>Предмет</th>
-                    <th>Оценка</th>
-                    <th>Действия</th>
-                </tr>
+                    <tr>
+                        <th>Студент</th>
+                        <th>Предмет</th>
+                        <th>Оценка</th>
+                        <th>Действия</th>
+                    </tr>
                 </thead>
                 <tbody></tbody>
             </table>
@@ -416,507 +427,514 @@
         </div>
         <div class="form-group">
             <label for="student-session-select">Выберите сессию</label>
-            <select id="student-session-select" onchange="loadStudentSession(currentUser)"></select>
+            <select id="student-session-select" onchange="app.loadStudentSession(app.currentUser)"></select>
         </div>
     </div>
+
     <script>
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        let grades = JSON.parse(localStorage.getItem('grades')) || [];
-        let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
-        let lastSessionState = JSON.stringify(sessions);
-        let currentUser;
-        let currentBarChart;
-        let currentChart;
-
-        function createSnowflake() {
-            const snowflakeContainer = document.getElementById('snowflake-container');
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = '❄️';
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
-            snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
-
-            snowflakeContainer.appendChild(snowflake);
-
-            setTimeout(() => {
-                snowflake.remove();
-            }, 16000);
+        class User {
+            constructor(name, username, password, role, groupNumber, studentCode) {
+                this.name = name;
+                this.username = username;
+                this.password = password;
+                this.role = role;
+                this.groupNumber = groupNumber;
+                this.studentCode = studentCode;
+            }
         }
 
-        setInterval(createSnowflake, 100);
-
-        function saveToLocalStorage(key, value) {
-            localStorage.setItem(key, JSON.stringify(value));
+        class Grade {
+            constructor(student, subject, gradeValue) {
+                this.student = student;
+                this.subject = subject;
+                this.grade = gradeValue;
+            }
         }
 
-        function toggleVisibility(elementId, isVisible) {
-            document.getElementById(elementId).classList.toggle('hidden', !isVisible);
+        class Session {
+            constructor(id, name) {
+                this.id = id;
+                this.name = name;
+                this.grades = [];
+            }
         }
 
-        function toggleGroupCodeField() {
-            const role = document.getElementById('reg-role').value;
-            const groupNumberContainer = document.getElementById('reg-group-container');
-            const studentCodeContainer = document.getElementById('student-code-container');
+        class App {
+            constructor() {
+                this.users = JSON.parse(localStorage.getItem('users')) || [];
+                this.sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+                this.lastSessionState = JSON.stringify(this.sessions);
 
-            groupNumberContainer.classList.toggle('hidden', role !== 'student');
-            studentCodeContainer.classList.toggle('hidden', role !== 'student');
-        }
+                this.currentUser = null;
 
-        function showRegistration() {
-            toggleVisibility('auth-container', false);
-            toggleVisibility('registration-container', true);
-        }
+                this.currentBarChart = null;
+                this.currentChart = null;
 
-        function showLogin() {
-            toggleVisibility('registration-container', false);
-            toggleVisibility('auth-container', true);
-        }
-        function checkForSessionUpdates(user) {
-            const currentSessionState = JSON.stringify(sessions);
-
-            if (currentSessionState !== lastSessionState) {
-                lastSessionState = currentSessionState;
-
-                const sessionId = document.getElementById('student-session-select').value;
-                const session = sessions.find(s => s.id === sessionId);
-
-                if (session) {
-                    const studentGrades = session.grades.filter(grade => grade.student === user.username);
-                    const averageGrade = studentGrades.reduce((sum, g) => sum + g.grade, 0) / (studentGrades.length || 1);
-                    document.getElementById('student-average').innerText = averageGrade.toFixed(2);
-
-                    renderCharts(studentGrades);
+                if (!this.users.length) {
+                    this.users.push(new User('Admin', 'admin', 'admin', 'teacher'));
+                    this.saveToLocalStorage('users', this.users);
                 }
-            }
-        }
-        function startAutoUpdate(user) {
-            setInterval(() => checkForSessionUpdates(user), 3000); // Проверяем каждые 3 секунды
-        }
 
-        function login() {
-            const username = document.getElementById('login-username').value.trim();
-            const password = document.getElementById('login-password').value.trim();
-
-            const user = users.find(u => u.username === username && u.password === password);
-            if (user) {
-                currentUser = user;
-                toggleVisibility('auth-container', false);
-                if (user.role === 'teacher') {
-                    loadTeacherInterface();
-                } else {
-                    loadStudentInterface(user);
+                if (!this.sessions.length) {
+                    this.createSession('Осенний семестр 2024');
                 }
-            } else {
-                alert('Неверный логин или пароль!');
-            }
-        }
 
-        function registerUser() {
-            const name = document.getElementById('reg-name').value.trim();
-            const username = document.getElementById('reg-username').value.trim();
-            const password = document.getElementById('reg-password').value.trim();
-            const role = document.getElementById('reg-role').value;
-            const groupNumber = document.getElementById('reg-group-number').value.trim();
-            const studentCode = document.getElementById('reg-student-code').value.trim();
+                this.updateSessionDropdowns();
+                this.initGarland();
 
-            if (!name || !username || !password || (role === 'student' && (!groupNumber || !studentCode))) {
-                alert('Заполните все обязательные поля!');
-                return;
+                window.addEventListener('storage', (e) => {
+                    if (e.key === 'sessions') {
+                        this.sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+                        this.checkForSessionUpdates(this.currentUser);
+                    }
+                });
             }
 
-            if (users.some(u => u.username === username)) {
-                alert('Пользователь с таким именем уже существует!');
-                return;
+            saveToLocalStorage(key, value) {
+                localStorage.setItem(key, JSON.stringify(value));
             }
 
-            const newUser = { name, username, password, role };
-            if (role === 'student') {
-                newUser.groupNumber = groupNumber;
-                newUser.studentCode = studentCode;
+            toggleVisibility(elementId, isVisible) {
+                document.getElementById(elementId).classList.toggle('hidden', !isVisible);
             }
 
-            users.push(newUser);
-            saveToLocalStorage('users', users);
+            toggleGroupCodeField() {
+                const role = document.getElementById('reg-role').value;
+                const groupNumberContainer = document.getElementById('reg-group-container');
+                const studentCodeContainer = document.getElementById('student-code-container');
 
-            alert('Регистрация прошла успешно!');
-            showLogin();
-        }
-
-        function createSession(name) {
-            const newSession = {
-                id: `session_${Date.now()}`,
-                name,
-                grades: []
-            };
-            sessions.push(newSession);
-            saveToLocalStorage('sessions', sessions);
-            updateSessionDropdowns();
-        }
-
-        function createNewSession() {
-            const sessionName = document.getElementById('new-session-name').value.trim();
-
-            if (!sessionName) {
-                alert('Введите название сессии!');
-                return;
+                groupNumberContainer.classList.toggle('hidden', role !== 'student');
+                studentCodeContainer.classList.toggle('hidden', role !== 'student');
             }
 
-            if (sessions.some(s => s.name.toLowerCase() === sessionName.toLowerCase())) {
-                alert('Сессия с таким названием уже существует!');
-                return;
+            showRegistration() {
+                this.toggleVisibility('auth-container', false);
+                this.toggleVisibility('registration-container', true);
             }
 
-            const newSession = {
-                id: `session_${Date.now()}`,
-                name: sessionName,
-                grades: []
-            };
-
-            sessions.push(newSession);
-            saveToLocalStorage('sessions', sessions);
-
-            alert('Сессия успешно добавлена!');
-            document.getElementById('new-session-name').value = '';
-
-            updateSessionDropdowns();
-        }
-
-        function updateSessionDropdowns() {
-            const sessionSelect = document.getElementById('session-select');
-            const studentSessionSelect = document.getElementById('student-session-select');
-
-            const options = sessions.map(session => `<option value="${session.id}">${session.name}</option>`).join('');
-
-            if (sessionSelect) sessionSelect.innerHTML = options;
-            if (studentSessionSelect) studentSessionSelect.innerHTML = options;
-        }
-
-        function loadTeacherInterface() {
-            toggleVisibility('teacher-container', true);
-            const studentSelect = document.getElementById('student-select');
-            studentSelect.innerHTML = users
-                .filter(user => user.role === 'student')
-                .map(student => `<option value="${student.username}">${student.name}</option>`)
-                .join('');
-            updateGradesTable();
-        }
-        function deleteGrade(sessionId, gradeIndex) {
-            const session = sessions.find(s => s.id === sessionId);
-
-            if (!session) {
-                alert('Сессия не найдена!');
-                return;
+            showLogin() {
+                this.toggleVisibility('registration-container', false);
+                this.toggleVisibility('auth-container', true);
             }
 
-            if (!confirm('Вы уверены, что хотите удалить эту оценку?')) {
-                return;
+            initGarland() {
+                setInterval(this.createSnowflake, 100);
             }
 
-            session.grades.splice(gradeIndex, 1);
-            saveToLocalStorage('sessions', sessions);
+            createSnowflake() {
+                const snowflakeContainer = document.getElementById('snowflake-container');
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄️';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.fontSize = Math.random() * 20 + 10 + 'px';
+                snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
 
-            loadSessionGrades();
+                snowflakeContainer.appendChild(snowflake);
 
-            alert('Оценка успешно удалена!');
-        }
-        function loadSessionGrades() {
-            const sessionId = document.getElementById('session-select').value;
-            const session = sessions.find(s => s.id === sessionId);
-
-            if (!session) {
-                alert('Сессия не найдена!');
-                return;
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 16000);
             }
 
-            const tbody = document.getElementById('grades-table').querySelector('tbody');
-
-            tbody.innerHTML = '';
-
-            if (session.grades.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Оценки отсутствуют.</td></tr>';
-                return;
+            createSession(name) {
+                const newSession = new Session(`session_${Date.now()}`, name);
+                this.sessions.push(newSession);
+                this.saveToLocalStorage('sessions', this.sessions);
             }
 
-            session.grades.forEach((grade, index) => {
-                const student = users.find(user => user.username === grade.student);
-                const row = `
-            <tr>
-                <td>${student ? student.name : 'Неизвестный студент'}</td>
-                <td>${grade.subject}</td>
-                <td>${grade.grade}</td>
-                <td>
-                    <button class="btn" onclick="editGrade('${sessionId}', ${index})">Редактировать</button>
-                    <button class="btn btn-danger" onclick="deleteGrade('${sessionId}', ${index})" title="Удалить">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
-                tbody.innerHTML += row;
-            });
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const firstTab = document.querySelector('.tablinks');
-            const firstTabName = firstTab.getAttribute('onclick').match(/'([^']+)'/)[1];
-            openTab({ currentTarget: firstTab }, firstTabName);
-
-            const sessionSelect = document.getElementById('session-select');
-            if (sessionSelect.options.length > 0) {
-                sessionSelect.value = sessionSelect.options[0].value;
-                loadSessionGrades();
-            }
-        });
-        function resetSessionGrades() {
-            const sessionId = document.getElementById('session-select').value;
-            const session = sessions.find(s => s.id === sessionId);
-
-            if (!session) {
-                Swal.fire('Ошибка', 'Сессия не найдена!', 'error');
-                return;
-            }
-
-            Swal.fire({
-                title: 'Вы уверены?',
-                text: "Вы действительно хотите сбросить все оценки в этой сессии? Это действие невозможно отменить.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#e31b23',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Да, сбросить!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    session.grades = [];
-                    saveToLocalStorage('sessions', sessions);
-                    loadSessionGrades();
-                    Swal.fire('Сброшено!', 'Успеваемость успешно сброшена.', 'success');
+            createNewSession() {
+                const sessionName = document.getElementById('new-session-name').value.trim();
+                if (!sessionName) {
+                    alert('Введите название сессии!');
+                    return;
                 }
-            });
-        }
-        function loadStudentSession(user) {
-            const sessionId = document.getElementById('student-session-select').value;
-            const session = sessions.find(s => s.id === sessionId);
+                if (this.sessions.some(s => s.name.toLowerCase() === sessionName.toLowerCase())) {
+                    alert('Сессия с таким названием уже существует!');
+                    return;
+                }
 
-            if (!session) {
-                alert('Сессия не найдена!');
-                return;
+                this.createSession(sessionName);
+                alert('Сессия успешно добавлена!');
+                document.getElementById('new-session-name').value = '';
+                this.updateSessionDropdowns();
             }
 
-            const studentGrades = session.grades.filter(grade => grade.student === user.username);
+            updateSessionDropdowns() {
+                const sessionSelect = document.getElementById('session-select');
+                const studentSessionSelect = document.getElementById('student-session-select');
+                if (!sessionSelect || !studentSessionSelect) return;
 
-            const averageGrade = studentGrades.reduce((sum, g) => sum + g.grade, 0) / (studentGrades.length || 1);
-            document.getElementById('student-average').innerText = averageGrade.toFixed(2);
+                const options = this.sessions
+                    .map(session => `<option value="${session.id}">${session.name}</option>`)
+                    .join('');
 
-            renderCharts(studentGrades);
-        }
-        function loadStudentInterface(user) {
-            toggleVisibility('student-container', true);
-            document.getElementById('student-name').innerText = user.name;
-            document.getElementById('student-group').innerText = user.groupNumber || 'Не указано';
-            document.getElementById('student-code').innerText = user.studentCode || 'Не указан';
-
-            const sessionSelect = document.getElementById('student-session-select');
-            sessionSelect.addEventListener('change', () => loadStudentSession(user));
-
-            loadStudentSession(user);
-            startAutoUpdate(user);
-        }
-
-        function addGradeToSession() {
-            const sessionId = document.getElementById('session-select').value;
-            const session = sessions.find(s => s.id === sessionId);
-
-            if (!session) {
-                alert('Сессия не найдена!');
-                return;
+                sessionSelect.innerHTML = options;
+                studentSessionSelect.innerHTML = options;
             }
 
-            const student = document.getElementById('student-select').value;
-            const subject = document.getElementById('subject').value.trim();
-            const grade = parseInt(document.getElementById('grade').value);
+            loadSessionGrades() {
+                const sessionId = document.getElementById('session-select').value;
+                const session = this.sessions.find(s => s.id === sessionId);
 
-            if (!student || !subject || isNaN(grade)) {
-                alert('Заполните все поля!');
-                return;
-            }
+                if (!session) {
+                    alert('Сессия не найдена!');
+                    return;
+                }
 
-            const duplicate = session.grades.find(g => g.student === student && g.subject === subject);
-            if (duplicate) {
-                duplicate.grade = grade;
-            } else {
-                session.grades.push({ student, subject, grade });
-            }
+                const tbody = document.getElementById('grades-table').querySelector('tbody');
+                tbody.innerHTML = '';
 
-            saveToLocalStorage('sessions', sessions);
-            alert('Оценка успешно добавлена!');
-            loadSessionGrades();
-        }
+                if (!session.grades.length) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center;">Оценки отсутствуют.</td></tr>';
+                    return;
+                }
 
-        function updateGradesTable() {
-            const tbody = document.getElementById('grades-table').querySelector('tbody');
-            tbody.innerHTML = grades
-                .map((grade, index) => {
-                    const student = users.find(user => user.username === grade.student);
-                    return `
+                session.grades.forEach((gradeObj, index) => {
+                    const student = this.users.find(u => u.username === gradeObj.student);
+                    const row = `
                         <tr>
-                            <td>${student.name}</td>
-                            <td>${grade.subject}</td>
-                            <td>${grade.grade}</td>
+                            <td>${student ? student.name : 'Неизвестный студент'}</td>
+                            <td>${gradeObj.subject}</td>
+                            <td>${gradeObj.grade}</td>
                             <td>
-                                <button class="btn" onclick="editGrade(${index})">Редактировать</button>
+                                <button class="btn" onclick="app.editGrade('${sessionId}', ${index})">Редактировать</button>
+                                <button class="btn btn-danger" onclick="app.deleteGrade('${sessionId}', ${index})" title="Удалить">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </td>
                         </tr>`;
-                })
-                .join('');
-        }
-
-        document.getElementById('session-select').addEventListener('change', loadSessionGrades);
-
-        function editGrade(sessionId, gradeIndex) {
-            const session = sessions.find(s => s.id === sessionId);
-            if (!session) return;
-
-            const grade = session.grades[gradeIndex];
-
-            const newSubject = prompt('Введите название предмета:', grade.subject);
-            const newGrade = parseInt(prompt('Введите новую оценку:', grade.grade));
-
-            if (!newSubject || isNaN(newGrade)) {
-                alert('Заполните все поля корректно!');
-                return;
+                    tbody.innerHTML += row;
+                });
             }
 
-            grade.subject = newSubject.trim();
-            grade.grade = newGrade;
+            resetSessionGrades() {
+                const sessionId = document.getElementById('session-select').value;
+                const session = this.sessions.find(s => s.id === sessionId);
+                if (!session) {
+                    Swal.fire('Ошибка', 'Сессия не найдена!', 'error');
+                    return;
+                }
 
-            saveToLocalStorage('sessions', sessions);
-            alert('Оценка успешно изменена!');
-            loadSessionGrades();
-        }
-        function openTab(evt, tabName) {
-            const tabcontent = document.querySelectorAll('.tabcontent');
-            tabcontent.forEach(tc => tc.classList.add('hidden'));
+                Swal.fire({
+                    title: 'Вы уверены?',
+                    text: "Вы действительно хотите сбросить все оценки в этой сессии? Это действие невозможно отменить.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e31b23',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Да, сбросить!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        session.grades = [];
+                        this.saveToLocalStorage('sessions', this.sessions);
+                        this.loadSessionGrades();
+                        Swal.fire('Сброшено!', 'Успеваемость успешно сброшена.', 'success');
+                    }
+                });
+            }
 
-            const tablinks = document.querySelectorAll('.tablinks');
-            tablinks.forEach(link => link.classList.remove('active'));
+            addGradeToSession() {
+                const sessionId = document.getElementById('session-select').value;
+                const session = this.sessions.find(s => s.id === sessionId);
+                if (!session) {
+                    alert('Сессия не найдена!');
+                    return;
+                }
 
-            document.getElementById(tabName).classList.remove('hidden');
-            evt.currentTarget.classList.add('active');
-        }
-        function renderCharts(studentGrades) {
-            if (currentChart) currentChart.destroy();
-            if (currentBarChart) currentBarChart.destroy();
+                const student = document.getElementById('student-select').value;
+                const subject = document.getElementById('subject').value.trim();
+                const gradeValue = parseInt(document.getElementById('grade').value);
 
-            const lineCtx = document.getElementById('line-chart').getContext('2d');
-            currentChart = new Chart(lineCtx, {
-                type: 'line',
-                data: {
-                    labels: studentGrades.map(grade => grade.subject),
-                    datasets: [{
-                        label: 'Динамика оценок (линейный)',
-                        data: studentGrades.map(grade => grade.grade),
-                        borderColor: 'rgba(227, 27, 35, 1)',
-                        backgroundColor: 'rgba(227, 27, 35, 0.2)',
-                        pointBackgroundColor: 'rgba(227, 27, 35, 1)',
-                        pointBorderColor: 'white',
-                        pointRadius: 5,
-                        tension: 0.4,
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    layout: {
-                        padding: {
-                            top: 30
-                        }
+                if (!student || !subject || isNaN(gradeValue)) {
+                    alert('Заполните все поля!');
+                    return;
+                }
+
+                const duplicate = session.grades.find(g => g.student === student && g.subject === subject);
+                if (duplicate) {
+                    duplicate.grade = gradeValue;
+                } else {
+                    session.grades.push(new Grade(student, subject, gradeValue));
+                }
+
+                this.saveToLocalStorage('sessions', this.sessions);
+                alert('Оценка успешно добавлена!');
+                this.loadSessionGrades();
+            }
+
+            deleteGrade(sessionId, gradeIndex) {
+                const session = this.sessions.find(s => s.id === sessionId);
+                if (!session) {
+                    alert('Сессия не найдена!');
+                    return;
+                }
+
+                if (!confirm('Вы уверены, что хотите удалить эту оценку?')) {
+                    return;
+                }
+
+                session.grades.splice(gradeIndex, 1);
+                this.saveToLocalStorage('sessions', this.sessions);
+                this.loadSessionGrades();
+                alert('Оценка успешно удалена!');
+            }
+
+            editGrade(sessionId, gradeIndex) {
+                const session = this.sessions.find(s => s.id === sessionId);
+                if (!session) return;
+
+                const gradeObj = session.grades[gradeIndex];
+                const newSubject = prompt('Введите название предмета:', gradeObj.subject);
+                const newGrade = parseInt(prompt('Введите новую оценку:', gradeObj.grade));
+
+                if (!newSubject || isNaN(newGrade)) {
+                    alert('Заполните все поля корректно!');
+                    return;
+                }
+
+                gradeObj.subject = newSubject.trim();
+                gradeObj.grade = newGrade;
+                this.saveToLocalStorage('sessions', this.sessions);
+                alert('Оценка успешно изменена!');
+                this.loadSessionGrades();
+            }
+
+            login() {
+                const username = document.getElementById('login-username').value.trim();
+                const password = document.getElementById('login-password').value.trim();
+
+                const user = this.users.find(u => u.username === username && u.password === password);
+                if (user) {
+                    this.currentUser = user;
+                    this.toggleVisibility('auth-container', false);
+                    if (user.role === 'teacher') {
+                        this.loadTeacherInterface();
+                    } else {
+                        this.loadStudentInterface(user);
+                    }
+                } else {
+                    alert('Неверный логин или пароль!');
+                }
+            }
+
+            registerUser() {
+                const name = document.getElementById('reg-name').value.trim();
+                const username = document.getElementById('reg-username').value.trim();
+                const password = document.getElementById('reg-password').value.trim();
+                const role = document.getElementById('reg-role').value;
+                const groupNumber = document.getElementById('reg-group-number').value.trim();
+                const studentCode = document.getElementById('reg-student-code').value.trim();
+
+                if (!name || !username || !password || (role === 'student' && (!groupNumber || !studentCode))) {
+                    alert('Заполните все обязательные поля!');
+                    return;
+                }
+                if (this.users.some(u => u.username === username)) {
+                    alert('Пользователь с таким именем уже существует!');
+                    return;
+                }
+
+                const newUser = new User(name, username, password, role, groupNumber, studentCode);
+                this.users.push(newUser);
+                this.saveToLocalStorage('users', this.users);
+                alert('Регистрация прошла успешно!');
+                this.showLogin();
+            }
+
+            loadTeacherInterface() {
+                this.toggleVisibility('teacher-container', true);
+
+                const studentSelect = document.getElementById('student-select');
+                studentSelect.innerHTML = this.users
+                    .filter(u => u.role === 'student')
+                    .map(s => `<option value="${s.username}">${s.name}</option>`)
+                    .join('');
+
+                this.loadSessionGrades();
+            }
+
+            loadStudentInterface(user) {
+                this.toggleVisibility('student-container', true);
+                document.getElementById('student-name').innerText = user.name;
+                document.getElementById('student-group').innerText = user.groupNumber || 'Не указано';
+                document.getElementById('student-code').innerText = user.studentCode || 'Не указан';
+
+                this.loadStudentSession(user);
+
+                this.startAutoUpdate(user);
+            }
+
+            loadStudentSession(user) {
+                const sessionId = document.getElementById('student-session-select').value;
+                const session = this.sessions.find(s => s.id === sessionId);
+                if (!session) {
+                    return;
+                }
+
+                const studentGrades = session.grades.filter(g => g.student === user.username);
+                const averageGrade = studentGrades.reduce((sum, g) => sum + g.grade, 0) / (studentGrades.length || 1);
+                document.getElementById('student-average').innerText = averageGrade.toFixed(2);
+
+                this.renderCharts(studentGrades);
+            }
+
+            checkForSessionUpdates(user) {
+                if (!user || user.role !== 'student') return;
+                const currentSessionState = JSON.stringify(this.sessions);
+
+                if (currentSessionState !== this.lastSessionState) {
+                    this.lastSessionState = currentSessionState;
+
+                    const sessionId = document.getElementById('student-session-select').value;
+                    const session = this.sessions.find(s => s.id === sessionId);
+                    if (session) {
+                        const studentGrades = session.grades.filter(g => g.student === user.username);
+                        const averageGrade = studentGrades.reduce((sum, g) => sum + g.grade, 0) / (studentGrades.length || 1);
+                        document.getElementById('student-average').innerText = averageGrade.toFixed(2);
+                        this.renderCharts(studentGrades);
+                    }
+                }
+            }
+
+            startAutoUpdate(user) {
+                setInterval(() => {
+                    this.sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+                    this.checkForSessionUpdates(user);
+                }, 2000);
+            }
+
+            openTab(evt, tabName) {
+                const tabcontent = document.querySelectorAll('.tabcontent');
+                tabcontent.forEach(tc => tc.classList.add('hidden'));
+
+                const tablinks = document.querySelectorAll('.tablinks');
+                tablinks.forEach(link => link.classList.remove('active'));
+
+                document.getElementById(tabName).classList.remove('hidden');
+                evt.currentTarget.classList.add('active');
+            }
+
+            renderCharts(studentGrades) {
+                if (this.currentChart) this.currentChart.destroy();
+                if (this.currentBarChart) this.currentBarChart.destroy();
+
+                const lineCtx = document.getElementById('line-chart').getContext('2d');
+                this.currentChart = new Chart(lineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: studentGrades.map(g => g.subject),
+                        datasets: [{
+                            label: 'Динамика оценок (линейный)',
+                            data: studentGrades.map(g => g.grade),
+                            borderColor: 'rgba(227, 27, 35, 1)',
+                            backgroundColor: 'rgba(227, 27, 35, 0.2)',
+                            pointBackgroundColor: 'rgba(227, 27, 35, 1)',
+                            pointBorderColor: 'white',
+                            pointRadius: 5,
+                            tension: 0.4,
+                            borderWidth: 2
+                        }]
                     },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                title: (tooltipItems) => tooltipItems[0].label,
-                                label: (context) => `Оценка: ${context.raw}`
+                    options: {
+                        responsive: true,
+                        layout: {
+                            padding: {
+                                top: 30
                             }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: false
                         },
-                        y: {
-                            beginAtZero: true,
-                            max: 6,
-                            ticks: {
-                                stepSize: 1,
-                                padding: 10
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: (items) => items[0].label,
+                                    label: (context) => `Оценка: ${context.raw}`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                beginAtZero: true,
+                                max: 6,
+                                ticks: {
+                                    stepSize: 1,
+                                    padding: 10
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
 
-            const barCtx = document.getElementById('bar-chart').getContext('2d');
-            currentBarChart = new Chart(barCtx, {
-                type: 'bar',
-                data: {
-                    labels: studentGrades.map(grade => grade.subject),
-                    datasets: [{
-                        label: 'Динамика оценок (столбчатый)',
-                        data: studentGrades.map(grade => grade.grade),
-                        backgroundColor: 'rgba(227, 27, 35, 0.6)',
-                        borderColor: 'rgba(227, 27, 35, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    layout: {
-                        padding: {
-                            top: 30
-                        }
+                const barCtx = document.getElementById('bar-chart').getContext('2d');
+                this.currentBarChart = new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: studentGrades.map(g => g.subject),
+                        datasets: [{
+                            label: 'Динамика оценок (столбчатый)',
+                            data: studentGrades.map(g => g.grade),
+                            backgroundColor: 'rgba(227, 27, 35, 0.6)',
+                            borderColor: 'rgba(227, 27, 35, 1)',
+                            borderWidth: 1
+                        }]
                     },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: (context) => `Оценка: ${context.raw}`
+                    options: {
+                        responsive: true,
+                        layout: {
+                            padding: {
+                                top: 30
                             }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: false
                         },
-                        y: {
-                            beginAtZero: true,
-                            max: 6,
-                            ticks: {
-                                stepSize: 1,
-                                padding: 10
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `Оценка: ${context.raw}`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                beginAtZero: true,
+                                max: 6,
+                                ticks: {
+                                    stepSize: 1,
+                                    padding: 10
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+            }
         }
+        const app = new App();
 
-        if (!users.length) {
-            users.push({ name: 'Admin', username: 'admin', password: 'admin', role: 'teacher' });
-            saveToLocalStorage('users', users);
-        }
+        document.getElementById('session-select').addEventListener('change', () => app.loadSessionGrades());
 
-        if (!sessions.length) {
-            createSession('Осенний семестр 2024');
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstTab = document.querySelector('.tablinks');
+            if (!firstTab) return;
+            const firstTabName = firstTab.getAttribute('onclick').match(/'([^']+)'/)[1];
+            app.openTab({ currentTarget: firstTab }, firstTabName);
 
-        updateSessionDropdowns();
+            const sessionSelect = document.getElementById('session-select');
+            if (sessionSelect && sessionSelect.options.length > 0) {
+                sessionSelect.value = sessionSelect.options[0].value;
+                app.loadSessionGrades();
+            }
+        });
     </script>
 </body>
 
