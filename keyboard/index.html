@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8-Bit Cyber Keyboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0f0f23;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .pixel {
+            position: absolute;
+            opacity: 0.5;
+            animation: matrix-fall linear infinite;
+        }
+
+        @keyframes matrix-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .keyboard-input {
+            width: 800px;
+            height: 100px;
+            margin: 20px;
+            padding: 15px;
+            font-size: 20px;
+            background: #000;
+            color: #0f0;
+            border: 4px solid #00ff00;
+            border-radius: 8px;
+            resize: none;
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 0 0 5px #0f0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .keyboard-input::placeholder {
+            color: #0f0;
+            opacity: 0.7;
+            text-shadow: 0 0 8px #0f0;
+            animation: terminal-blink 1.5s infinite;
+        }
+
+        @keyframes terminal-blink {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; text-shadow: 0 0 12px #0f0; }
+            100% { opacity: 0.3; }
+        }
+
+        .keyboard {
+            background: #1a1a2f;
+            padding: 15px;
+            border-radius: 12px;
+            border: 4px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .key-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .key {
+            background: #2d2d5a;
+            color: #0f0;
+            border: 2px solid #00ff00;
+            border-radius: 4px;
+            margin: 2px;
+            padding: 15px;
+            min-width: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.1s;
+            text-shadow: 0 0 5px #0f0;
+            font-family: 'Press Start 2P', cursive;
+            position: relative;
+        }
+
+        .key::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid #ff00ff;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .key:hover::after {
+            opacity: 1;
+        }
+
+        .key.pressed {
+            transform: scale(0.95);
+            background: #4d4d8a;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .key.special {
+            background: #ff00ff;
+            color: #000;
+            border-color: #0f0;
+            text-shadow: none;
+        }
+
+        .lang-notify {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border: 2px solid #0f0;
+            border-radius: 5px;
+            animation: cyber-glow 1s infinite;
+            display: none;
+        }
+
+        @keyframes cyber-glow {
+            0% { box-shadow: 0 0 5px #0f0, inset 0 0 5px #0f0; }
+            50% { box-shadow: 0 0 20px #0f0, inset 0 0 10px #0f0; }
+            100% { box-shadow: 0 0 5px #0f0, inset 0 0 5px #0f0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrix"></div>
+    <textarea class="keyboard-input" id="input" placeholder=">_ SYSTEM_READY..."></textarea>
+    <div class="keyboard" id="keyboard"></div>
+    <div class="lang-notify" id="langAlert">LANG: EN</div>
+
+    <script>
+        function createMatrixEffect() {
+            const matrix = document.getElementById('matrix');
+            const shapes = ['rect', 'circle', 'triangle'];
+            const colors = ['#0f0', '#f0f', '#0ff'];
+            
+            const shape = document.createElement('div');
+            shape.className = 'pixel';
+            
+            const type = shapes[Math.floor(Math.random() * shapes.length)];
+            const size = Math.floor(Math.random() * 25 + 15);
+            const left = Math.random() * 100;
+            const duration = Math.random() * 3 + 2;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.left = `${left}%`;
+            shape.style.animationDuration = `${duration}s`;
+            shape.style.backgroundColor = color;
+            
+            if(type === 'circle') shape.style.borderRadius = '50%';
+            if(type === 'triangle') {
+                shape.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                shape.style.backgroundColor = 'transparent';
+                shape.style.borderBottom = `${size}px solid ${color}`;
+            }
+            
+            matrix.appendChild(shape);
+            
+            shape.addEventListener('animationend', () => {
+                shape.remove();
+            });
+        }
+        setInterval(createMatrixEffect, 150);
+
+        const keyMap = {
+            en: {
+                default: {
+                    'KeyQ': 'q', 'KeyW': 'w', 'KeyE': 'e', 'KeyR': 'r', 'KeyT': 't', 'KeyY': 'y',
+                    'KeyU': 'u', 'KeyI': 'i', 'KeyO': 'o', 'KeyP': 'p', 'KeyA': 'a', 'KeyS': 's',
+                    'KeyD': 'd', 'KeyF': 'f', 'KeyG': 'g', 'KeyH': 'h', 'KeyJ': 'j', 'KeyK': 'k',
+                    'KeyL': 'l', 'KeyZ': 'z', 'KeyX': 'x', 'KeyC': 'c', 'KeyV': 'v', 'KeyB': 'b',
+                    'KeyN': 'n', 'KeyM': 'm', 'Digit1': '1', 'Digit2': '2', 'Digit3': '3',
+                    'Digit4': '4', 'Digit5': '5', 'Digit6': '6', 'Digit7': '7', 'Digit8': '8',
+                    'Digit9': '9', 'Digit0': '0', 'Space': ' ', 'Backquote': '`', 'Minus': '-',
+                    'Equal': '=', 'BracketLeft': '[', 'BracketRight': ']', 'Backslash': '\\',
+                    'Semicolon': ';', 'Quote': "'", 'Comma': ',', 'Period': '.', 'Slash': '/'
+                },
+                shift: {
+                    'KeyQ': 'Q', 'KeyW': 'W', 'KeyE': 'E', 'KeyR': 'R', 'KeyT': 'T', 'KeyY': 'Y',
+                    'KeyU': 'U', 'KeyI': 'I', 'KeyO': 'O', 'KeyP': 'P', 'KeyA': 'A', 'KeyS': 'S',
+                    'KeyD': 'D', 'KeyF': 'F', 'KeyG': 'G', 'KeyH': 'H', 'KeyJ': 'J', 'KeyK': 'K',
+                    'KeyL': 'L', 'KeyZ': 'Z', 'KeyX': 'X', 'KeyC': 'C', 'KeyV': 'V', 'KeyB': 'B',
+                    'KeyN': 'N', 'KeyM': 'M', 'Digit1': '!', 'Digit2': '@', 'Digit3': '#',
+                    'Digit4': '$', 'Digit5': '%', 'Digit6': '^', 'Digit7': '&', 'Digit8': '*',
+                    'Digit9': '(', 'Digit0': ')', 'Space': ' ', 'Backquote': '~', 'Minus': '_',
+                    'Equal': '+', 'BracketLeft': '{', 'BracketRight': '}', 'Backslash': '|',
+                    'Semicolon': ':', 'Quote': '"', 'Comma': '<', 'Period': '>', 'Slash': '?'
+                }
+            },
+            ru: {
+                default: {
+                    'KeyQ': 'й', 'KeyW': 'ц', 'KeyE': 'у', 'KeyR': 'к', 'KeyT': 'е', 'KeyY': 'н',
+                    'KeyU': 'г', 'KeyI': 'ш', 'KeyO': 'щ', 'KeyP': 'з', 'KeyA': 'ф', 'KeyS': 'ы',
+                    'KeyD': 'в', 'KeyF': 'а', 'KeyG': 'п', 'KeyH': 'р', 'KeyJ': 'о', 'KeyK': 'л',
+                    'KeyL': 'д', 'KeyZ': 'я', 'KeyX': 'ч', 'KeyC': 'с', 'KeyV': 'м', 'KeyB': 'и',
+                    'KeyN': 'т', 'KeyM': 'ь', 'Digit1': '1', 'Digit2': '2', 'Digit3': '3',
+                    'Digit4': '4', 'Digit5': '5', 'Digit6': '6', 'Digit7': '7', 'Digit8': '8',
+                    'Digit9': '9', 'Digit0': '0', 'Space': ' ', 'Backquote': 'ё', 'Minus': '-',
+                    'Equal': '=', 'BracketLeft': 'х', 'BracketRight': 'ъ', 'Backslash': '/',
+                    'Semicolon': 'ж', 'Quote': 'э', 'Comma': 'б', 'Period': 'ю', 'Slash': '.'
+                },
+                shift: {
+                    'KeyQ': 'Й', 'KeyW': 'Ц', 'KeyE': 'У', 'KeyR': 'К', 'KeyT': 'Е', 'KeyY': 'Н',
+                    'KeyU': 'Г', 'KeyI': 'Ш', 'KeyO': 'Щ', 'KeyP': 'З', 'KeyA': 'Ф', 'KeyS': 'Ы',
+                    'KeyD': 'В', 'KeyF': 'А', 'KeyG': 'П', 'KeyH': 'Р', 'KeyJ': 'О', 'KeyK': 'Л',
+                    'KeyL': 'Д', 'KeyZ': 'Я', 'KeyX': 'Ч', 'KeyC': 'С', 'KeyV': 'М', 'KeyB': 'И',
+                    'KeyN': 'Т', 'KeyM': 'Ь', 'Digit1': '!', 'Digit2': '"', 'Digit3': '№',
+                    'Digit4': ';', 'Digit5': '%', 'Digit6': ':', 'Digit7': '?', 'Digit8': '*',
+                    'Digit9': '(', 'Digit0': ')', 'Space': ' ', 'Backquote': 'Ё', 'Minus': '_',
+                    'Equal': '+', 'BracketLeft': 'Х', 'BracketRight': 'Ъ', 'Backslash': '\\',
+                    'Semicolon': 'Ж', 'Quote': 'Э', 'Comma': 'Б', 'Period': 'Ю', 'Slash': ','
+                }
+            }
+        };
+
+        let currentLang = 'en';
+        let shiftOn = false;
+        let altOn = false;
+        const keyboard = document.getElementById('keyboard');
+        const inputField = document.getElementById('input');
+        const langAlert = document.getElementById('langAlert');
+
+        const keyboardLayout = [
+            ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 
+             'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
+            ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 
+             'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash'],
+            ['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 
+             'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+            ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 
+             'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight'],
+            ['Space']
+        ];
+
+        keyboardLayout.forEach(row => {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'key-row';
+            
+            row.forEach(keyCode => {
+                const key = document.createElement('button');
+                key.className = 'key';
+                key.dataset.key = keyCode;
+                
+                if (['ShiftLeft', 'ShiftRight', 'Backspace', 'Enter', 'Space'].includes(keyCode)) {
+                    key.classList.add('special');
+                }
+                
+                if (keyCode === 'Backspace') key.style.minWidth = '100px';
+                if (keyCode === 'Enter') key.style.minWidth = '120px';
+                if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') key.style.minWidth = '100px';
+                if (keyCode === 'Space') key.style.minWidth = '400px';
+                
+                rowDiv.appendChild(key);
+            });
+            keyboard.appendChild(rowDiv);
+        });
+
+        function updateKeys() {
+            document.querySelectorAll('.key').forEach(key => {
+                const keyCode = key.dataset.key;
+                const char = keyMap[currentLang][shiftOn ? 'shift' : 'default'][keyCode] || keyCode;
+                key.textContent = char;
+            });
+        }
+
+        function showLangAlert() {
+            langAlert.textContent = `LANG: ${currentLang.toUpperCase()}`;
+            langAlert.style.display = 'block';
+            setTimeout(() => langAlert.style.display = 'none', 1500);
+        }
+
+        document.addEventListener('keydown', e => {
+            e.preventDefault();
+            if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') shiftOn = true;
+            if (e.code === 'AltLeft' || e.code === 'AltRight') altOn = true;
+            
+            if (shiftOn && altOn) {
+                currentLang = currentLang === 'en' ? 'ru' : 'en';
+                updateKeys();
+                showLangAlert();
+            }
+            
+            processKey(e.code, true);
+        });
+
+        document.addEventListener('keyup', e => {
+            if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') shiftOn = false;
+            if (e.code === 'AltLeft' || e.code === 'AltRight') altOn = false;
+            processKey(e.code, false);
+        });
+
+        keyboard.addEventListener('mousedown', e => {
+            if (e.target.classList.contains('key')) {
+                const keyCode = e.target.dataset.key;
+                if (keyCode === 'AltLeft' || keyCode === 'AltRight') altOn = true;
+                processKey(keyCode, true);
+            }
+        });
+
+        keyboard.addEventListener('mouseup', e => {
+            if (e.target.classList.contains('key')) {
+                const keyCode = e.target.dataset.key;
+                if (keyCode === 'AltLeft' || keyCode === 'AltRight') altOn = false;
+                processKey(keyCode, false);
+            }
+        });
+
+        function processKey(keyCode, isDown) {
+            const key = document.querySelector(`[data-key="${keyCode}"]`);
+            if (!key) return;
+
+            if (isDown) {
+                key.classList.add('pressed');
+                
+                if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') {
+                    shiftOn = true;
+                    updateKeys();
+                }
+                else if (keyCode === 'Backspace') {
+                    inputField.value = inputField.value.slice(0, -1);
+                }
+                else if (keyCode === 'Space') {
+                    inputField.value += ' ';
+                }
+                else if (keyCode === 'Enter') {
+                    inputField.value += '\n';
+                }
+                else {
+                    const char = keyMap[currentLang][shiftOn ? 'shift' : 'default'][keyCode];
+                    if (char) inputField.value += char;
+                }
+            } else {
+                key.classList.remove('pressed');
+                if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') {
+                    shiftOn = false;
+                    updateKeys();
+                }
+            }
+        }
+
+        updateKeys();
+    </script>
+</body>
+</html>
